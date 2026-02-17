@@ -15,6 +15,7 @@
             --bg-dark: #111;
             --card-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-blue: #00d4ff;
         }
 
         * {
@@ -53,6 +54,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .logo-img {
@@ -75,6 +77,32 @@
             color: var(--accent-color);
         }
 
+        /* Barra de Estadísticas */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            margin: 20px 5%;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+        }
+
+        .stat-item h3 {
+            font-size: 2.2rem;
+            color: var(--neon-blue);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
         /* Contenedor Principal */
         main {
             max-width: 1200px;
@@ -83,11 +111,22 @@
             text-align: center;
         }
 
-        h1.main-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
+        .section-title {
+            font-size: 2rem;
+            margin: 40px 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 10px auto;
         }
 
         /* Grid de Deportes */
@@ -95,7 +134,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            padding-bottom: 60px;
+            padding-bottom: 40px;
         }
 
         .sport-card {
@@ -111,8 +150,8 @@
 
         .sport-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+            border-color: var(--neon-blue);
         }
 
         .sport-card img {
@@ -128,7 +167,7 @@
         .card-content h2 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--accent-color);
+            color: var(--neon-blue);
         }
 
         .info-btn {
@@ -139,11 +178,71 @@
             text-decoration: none;
             border-radius: 25px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
 
         .info-btn:hover {
-            background: #0056b3;
+            background: var(--neon-blue);
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        /* Últimas Noticias */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .news-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            transition: background 0.3s;
+        }
+
+        .news-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .news-item h4 {
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(45deg, rgba(0, 123, 255, 0.1), rgba(0, 0, 0, 0.6));
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin: 60px 0;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(5px);
+        }
+
+        .newsletter h2 {
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .newsletter input {
+            padding: 12px 25px;
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            width: 300px;
+            max-width: 80%;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .newsletter input:focus {
+            border-color: var(--neon-blue);
         }
 
         footer {
@@ -151,6 +250,7 @@
             padding: 40px;
             font-size: 0.9rem;
             color: #888;
+            border-top: 1px solid var(--glass-border);
         }
 
         /* Ajustes para móviles */
@@ -159,14 +259,14 @@
                 flex-direction: column;
                 gap: 15px;
             }
-            nav {
-                margin-bottom: 10px;
-            }
             nav a {
                 margin: 0 10px;
             }
-            h1.main-title {
-                font-size: 1.8rem;
+            .stats-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+            .newsletter input {
+                width: 100%;
             }
         }
     </style>
@@ -183,8 +283,15 @@
         <img src="css/ChatGPT Image 31 oct 2025, 12_22_23.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
     </header>
 
+    <section class="stats-bar">
+        <div class="stat-item"><h3>+15k</h3><p>ALUMNOS</p></div>
+        <div class="stat-item"><h3>+50</h3><p>CURSOS PRO</p></div>
+        <div class="stat-item"><h3>24/7</h3><p>SOPORTE</p></div>
+        <div class="stat-item"><h3>100%</h3><p>PASIÓN</p></div>
+    </section>
+
     <main>
-        <h1 class="main-title">SportPress</h1>
+        <h2 class="section-title">Disciplinas</h2>
 
         <div class="sports-grid">
             <article class="sport-card">
@@ -211,10 +318,36 @@
                 </div>
             </article>
         </div>
+
+        <h2 class="section-title">Últimas Noticias</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <h4>Nuevo curso de Boxeo</h4>
+                <p>Aprende técnicas de defensa personal con expertos olímpicos este mes.</p>
+            </div>
+            <div class="news-item">
+                <h4>Equipación 2026</h4>
+                <p>Ya disponible la nueva colección de ropa técnica en nuestra tienda oficial.</p>
+            </div>
+            <div class="news-item">
+                <h4>Expedición Tiburón</h4>
+                <p>Nuestros pescadores rompen récord de avistamientos en aguas internacionales.</p>
+            </div>
+        </div>
+
+        <section class="newsletter">
+            <h2>ÚNETE AL CLUB SPORTPRESS</h2>
+            <p style="margin-bottom: 25px; color: #ccc;">Recibe consejos de entrenamiento y ofertas exclusivas cada semana.</p>
+            <form action="#">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <br>
+                <button type="submit" class="info-btn" style="border:none; cursor:pointer;">SUSCRIBIRME</button>
+            </form>
+        </section>
     </main>
 
     <footer>
-        © SportPress — Profesional.
+        © SportPress 2026 — Profesionalismo y Deporte.
     </footer>
 
     <script>
@@ -226,7 +359,7 @@
         function init(){
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            circles.length = 0; // Limpiar array en resize
+            circles.length = 0; 
 
             for (let i = 0; i < balls; i++){
                 circles.push({
@@ -252,7 +385,6 @@
                 if(circle.x < 0 || circle.x > canvas.width) circle.velocity.x *= -1;
                 if(circle.y < 0 || circle.y > canvas.height) circle.velocity.y *= -1;
 
-                // Atracción suave al mouse
                 const dx = mouseX - circle.x;
                 const dy = mouseY - circle.y;
                 const distToCursor = Math.sqrt(dx * dx + dy * dy);
@@ -261,18 +393,14 @@
                     circle.y += (dy / distToCursor) * 0.2;
                 }
 
-                drawCircle(circle.x, circle.y, circle.radius, circle.color);
+                ctx.beginPath();
+                ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = circle.color;
+                ctx.fill();
             });
 
             connectCircles();
             requestAnimationFrame(animate);
-        }
-
-        function drawCircle(x, y, radius, color){
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
-            ctx.fillStyle = color;
-            ctx.fill();
         }
 
         function connectCircles(){
@@ -286,7 +414,6 @@
                         ctx.beginPath();
                         ctx.moveTo(circles[i].x, circles[i].y);
                         ctx.lineTo(circles[j].x, circles[j].y);
-                        // Opacidad basada en la distancia
                         ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance/150})`;
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
