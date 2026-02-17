@@ -30,7 +30,6 @@
 
         canvas { position: fixed; top: 0; left: 0; z-index: -1; }
 
-        /* Navegación */
         header {
             display: flex;
             justify-content: space-between;
@@ -61,7 +60,6 @@
 
         .nav-pill a:hover { color: var(--neon-blue); }
 
-        /* Contenedor de Tienda */
         .shop-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -78,9 +76,9 @@
             letter-spacing: 5px;
             text-transform: uppercase;
             color: var(--neon-blue);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
         }
 
-        /* Filtros */
         .filters {
             display: flex;
             justify-content: center;
@@ -106,10 +104,9 @@
             box-shadow: 0 0 15px var(--accent-color);
         }
 
-        /* Grid de Productos */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 30px;
         }
 
@@ -129,14 +126,16 @@
         .product-card:hover {
             transform: translateY(-10px);
             border-color: var(--neon-blue);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
         }
 
         .product-card img {
             width: 100%;
-            height: 180px;
-            object-fit: contain;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
             margin-bottom: 15px;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            background: #222; /* Fondo mientras carga */
         }
 
         .product-category {
@@ -145,40 +144,45 @@
             color: var(--neon-blue);
             letter-spacing: 2px;
             margin-bottom: 5px;
+            display: block;
         }
 
         .product-card h3 {
             font-size: 1.1rem;
             margin-bottom: 10px;
-            height: 50px;
+            min-height: 50px;
         }
 
         .price {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 900;
             margin-bottom: 15px;
             display: block;
+            color: var(--primary-color);
         }
 
         .buy-btn {
             background: var(--primary-color);
             color: #000;
             text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 700;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 900;
             transition: 0.3s;
+            display: block;
         }
 
         .buy-btn:hover {
             background: var(--neon-blue);
             box-shadow: 0 0 20px var(--neon-blue);
+            transform: scale(1.02);
         }
 
         footer { text-align: center; padding: 60px; color: #555; }
 
         @media (max-width: 600px) {
             .shop-header h1 { font-size: 2rem; }
+            .products-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -191,20 +195,20 @@
             <a href="index.html">INICIO</a>
             <a href="#">TIENDA</a>
         </div>
-        <h2 style="font-size: 1.2rem; letter-spacing: 2px;">SPORTPRESS</h2>
+        <h2 style="font-size: 1.2rem; letter-spacing: 2px; color: var(--neon-blue);">SPORTPRESS</h2>
     </header>
 
     <div class="shop-container">
         <div class="shop-header">
             <h1>TIENDA ELITE</h1>
-            <p>Equipamiento profesional para deportistas que no aceptan excusas.</p>
+            <p>Equipamiento profesional verificado para alto rendimiento.</p>
         </div>
 
         <div class="filters">
-            <button class="filter-btn active" onclick="filterProducts('todos')">TODOS</button>
-            <button class="filter-btn" onclick="filterProducts('boxeo')">BOXEO</button>
-            <button class="filter-btn" onclick="filterProducts('basket')">BASKET</button>
-            <button class="filter-btn" onclick="filterProducts('pesca')">PESCA EXTREMA</button>
+            <button class="filter-btn active" onclick="filterProducts('todos', this)">TODOS</button>
+            <button class="filter-btn" onclick="filterProducts('boxeo', this)">BOXEO</button>
+            <button class="filter-btn" onclick="filterProducts('basket', this)">BASKET</button>
+            <button class="filter-btn" onclick="filterProducts('pesca', this)">PESCA EXTREMA</button>
         </div>
 
         <div class="products-grid" id="products-grid">
@@ -214,12 +218,17 @@
     <footer>© SportPress 2026 — Equipamiento de Alto Rendimiento</footer>
 
     <script>
-        // GENERADOR DE PRODUCTOS (Más de 50)
         const categories = ['boxeo', 'basket', 'pesca'];
         const items = {
-            boxeo: ['Guantes Pro', 'Saco de Golpeo', 'Vendas 4.5m', 'Protector Bucal', 'Casco Competición', 'Botas Ring', 'Pera de Velocidad', 'Comba Lastrada', 'Manoplas de Cuero', 'Pantalón Muay Thai', 'Bata de Entrada', 'Soporte de Saco', 'Gel de Contacto', 'Cronómetro Rounds', 'Escudo de Patada', 'Guantillas MMA', 'Bolsa de Deporte'],
-            basket: ['Balón Oficial', 'Zapatillas Fly', 'Canasta Portátil', 'Red de Acero', 'Muñequeras', 'Camiseta Tirantes', 'Pizarra Táctica', 'Mochila Balón', 'Protector Tobillo', 'Marcador Digital', 'Calcetines Compresión', 'Gafas de Dribbling', 'Inflador Rápido', 'Cinta Pelo', 'Manguito Brazo', 'Soporte Rodilla', 'Conos de Agilidad'],
-            pesca: ['Caña de Carbono', 'Carrete Reforzado', 'Arnés de Combate', 'Anzuelos Titanio', 'Hilo Trenzado 100lb', 'Cebo Artificial', 'Ganchos Lobo', 'Silla de Pelea', 'Sonda Eco', 'Guantes de Agarre', 'Cuchillo Despiece', 'Boyas de Alta Mar', 'Alicates de Corte', 'Chaleco Salvavidas', 'Cinturón Gimbal', 'Ancla de Capa', 'Nevera Térmica']
+            boxeo: ['Guantes Pro Black', 'Saco Pesado 40kg', 'Vendas Competición', 'Protector Bucal Gel', 'Casco Elite Face', 'Botas Speed Ring', 'Pera de Cuero', 'Comba Rodamientos', 'Manoplas Pro Focus', 'Pantalón Satin Red', 'Bata de Ring Gold', 'Soporte Pared Pro', 'Báscula Precisión', 'Cronómetro Pro Fight', 'Escudo de Potencia', 'Guantes MMA Open', 'Bolsa Gym XL'],
+            basket: ['Balón Official Size', 'Zapatillas Flight X', 'Canasta Hidráulica', 'Red de Acero Galva', 'Muñequeras Terry', 'Camiseta All-Star', 'Pizarra Táctica Pro', 'Mochila Hoops', 'Tobillera Reforzada', 'Marcador Mesa LED', 'Calcetines Elite', 'Gafas Visión Baja', 'Inflador Dual Action', 'Cinta Cabeza Pro', 'Manguito Shooter', 'Rodillera Articulada', 'Conos Entrenamiento'],
+            pesca: ['Caña Carbon Master', 'Carrete Ocean Drag', 'Arnés Combate Pro', 'Kit Anzuelos Titan', 'Línea Trenzada X8', 'Cebo Calamar Giant', 'Gancho Inox 1.5m', 'Silla Lucha Deck', 'Sonda 4K Depth', 'Guantes Grip Kevlar', 'Cuchillo Filetear', 'Boya Localizadora', 'Alicates Master Grip', 'Chaleco Auto-Hinchable', 'Cinturón Gimbal Pro', 'Ancla Paracaídas', 'Nevera Hielo 72h']
+        };
+
+        const imgQueries = {
+            boxeo: 'boxing,gloves,punching',
+            basket: 'basketball,shoes,hoop',
+            pesca: 'fishing,ocean,rod'
         };
 
         function generateCatalog() {
@@ -228,17 +237,21 @@
 
             categories.forEach(cat => {
                 items[cat].forEach((name, index) => {
-                    const price = (Math.random() * (200 - 20) + 20).toFixed(2);
+                    const price = (Math.random() * (250 - 35) + 35).toFixed(2);
+                    // Usamos picsum para evitar bloqueos y asegurar imágenes de stock deportivo
+                    const randomId = Math.floor(Math.random() * 1000);
+                    const imgUrl = `https://loremflickr.com/400/300/${imgQueries[cat]}?lock=${randomId + index}`;
+                    
                     html += `
                         <div class="product-card" data-category="${cat}">
                             <div>
                                 <span class="product-category">${cat}</span>
-                                <img src="https://via.placeholder.com/200/000/fff?text=${name.replace(' ', '+')}" alt="${name}">
-                                <h3>${name} Edition 2026</h3>
+                                <img src="${imgUrl}" alt="${name}" loading="lazy">
+                                <h3>${name}</h3>
                             </div>
                             <div>
                                 <span class="price">${price}€</span>
-                                <a href="#" class="buy-btn">AÑADIR AL CARRITO</a>
+                                <a href="#" class="buy-btn" onclick="alert('Producto añadido al carrito')">COMPRAR</a>
                             </div>
                         </div>
                     `;
@@ -247,12 +260,12 @@
             grid.innerHTML = html;
         }
 
-        function filterProducts(cat) {
+        function filterProducts(cat, btn) {
             const cards = document.querySelectorAll('.product-card');
             const btns = document.querySelectorAll('.filter-btn');
             
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
             cards.forEach(card => {
                 if (cat === 'todos' || card.dataset.category === cat) {
@@ -263,15 +276,16 @@
             });
         }
 
-        // CANVAS ANIMATION (Fondo Neural)
+        // Fondo Animado
         const canvas = document.getElementById('neuralCanvas'), ctx = canvas.getContext('2d');
         let circles = [];
         function init(){
             canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            for (let i = 0; i < 80; i++){
+            circles = [];
+            for (let i = 0; i < 60; i++){
                 circles.push({
                     x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5
+                    vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4
                 });
             }
         }
@@ -280,8 +294,8 @@
             circles.forEach(c => {
                 c.x += c.vx; c.y += c.vy;
                 if(c.x<0||c.x>canvas.width) c.vx*=-1; if(c.y<0||c.y>canvas.height) c.vy*=-1;
-                ctx.beginPath(); ctx.arc(c.x, c.y, 2, 0, Math.PI*2);
-                ctx.fillStyle = 'rgba(255,255,255,0.2)'; ctx.fill();
+                ctx.beginPath(); ctx.arc(c.x, c.y, 1.5, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba(0, 212, 255, 0.3)'; ctx.fill();
             });
             requestAnimationFrame(draw);
         }
