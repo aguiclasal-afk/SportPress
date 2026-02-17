@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda PRO — SportPress</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --accent-color: #007bff;
+            --bg-dark: #111;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-blue: #00d4ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--primary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+
+        /* Navegación */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-pill {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .nav-pill a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .nav-pill a:hover { color: var(--neon-blue); }
+
+        /* Contenedor de Tienda */
+        .shop-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .shop-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .shop-header h1 {
+            font-size: 3rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--neon-blue);
+        }
+
+        /* Filtros */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-color);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        /* Grid de Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+        }
+
+        .product-category {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--neon-blue);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            height: 50px;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .buy-btn {
+            background: var(--primary-color);
+            color: #000;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            background: var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        footer { text-align: center; padding: 60px; color: #555; }
+
+        @media (max-width: 600px) {
+            .shop-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="neuralCanvas"></canvas>
+
+    <header>
+        <div class="nav-pill">
+            <a href="index.html">INICIO</a>
+            <a href="#">TIENDA</a>
+        </div>
+        <h2 style="font-size: 1.2rem; letter-spacing: 2px;">SPORTPRESS</h2>
+    </header>
+
+    <div class="shop-container">
+        <div class="shop-header">
+            <h1>TIENDA ELITE</h1>
+            <p>Equipamiento profesional para deportistas que no aceptan excusas.</p>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterProducts('todos')">TODOS</button>
+            <button class="filter-btn" onclick="filterProducts('boxeo')">BOXEO</button>
+            <button class="filter-btn" onclick="filterProducts('basket')">BASKET</button>
+            <button class="filter-btn" onclick="filterProducts('pesca')">PESCA EXTREMA</button>
+        </div>
+
+        <div class="products-grid" id="products-grid">
+            </div>
+    </div>
+
+    <footer>© SportPress 2026 — Equipamiento de Alto Rendimiento</footer>
+
+    <script>
+        // GENERADOR DE PRODUCTOS (Más de 50)
+        const categories = ['boxeo', 'basket', 'pesca'];
+        const items = {
+            boxeo: ['Guantes Pro', 'Saco de Golpeo', 'Vendas 4.5m', 'Protector Bucal', 'Casco Competición', 'Botas Ring', 'Pera de Velocidad', 'Comba Lastrada', 'Manoplas de Cuero', 'Pantalón Muay Thai', 'Bata de Entrada', 'Soporte de Saco', 'Gel de Contacto', 'Cronómetro Rounds', 'Escudo de Patada', 'Guantillas MMA', 'Bolsa de Deporte'],
+            basket: ['Balón Oficial', 'Zapatillas Fly', 'Canasta Portátil', 'Red de Acero', 'Muñequeras', 'Camiseta Tirantes', 'Pizarra Táctica', 'Mochila Balón', 'Protector Tobillo', 'Marcador Digital', 'Calcetines Compresión', 'Gafas de Dribbling', 'Inflador Rápido', 'Cinta Pelo', 'Manguito Brazo', 'Soporte Rodilla', 'Conos de Agilidad'],
+            pesca: ['Caña de Carbono', 'Carrete Reforzado', 'Arnés de Combate', 'Anzuelos Titanio', 'Hilo Trenzado 100lb', 'Cebo Artificial', 'Ganchos Lobo', 'Silla de Pelea', 'Sonda Eco', 'Guantes de Agarre', 'Cuchillo Despiece', 'Boyas de Alta Mar', 'Alicates de Corte', 'Chaleco Salvavidas', 'Cinturón Gimbal', 'Ancla de Capa', 'Nevera Térmica']
+        };
+
+        function generateCatalog() {
+            const grid = document.getElementById('products-grid');
+            let html = '';
+
+            categories.forEach(cat => {
+                items[cat].forEach((name, index) => {
+                    const price = (Math.random() * (200 - 20) + 20).toFixed(2);
+                    html += `
+                        <div class="product-card" data-category="${cat}">
+                            <div>
+                                <span class="product-category">${cat}</span>
+                                <img src="https://via.placeholder.com/200/000/fff?text=${name.replace(' ', '+')}" alt="${name}">
+                                <h3>${name} Edition 2026</h3>
+                            </div>
+                            <div>
+                                <span class="price">${price}€</span>
+                                <a href="#" class="buy-btn">AÑADIR AL CARRITO</a>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+            grid.innerHTML = html;
+        }
+
+        function filterProducts(cat) {
+            const cards = document.querySelectorAll('.product-card');
+            const btns = document.querySelectorAll('.filter-btn');
+            
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (cat === 'todos' || card.dataset.category === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // CANVAS ANIMATION (Fondo Neural)
+        const canvas = document.getElementById('neuralCanvas'), ctx = canvas.getContext('2d');
+        let circles = [];
+        function init(){
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            for (let i = 0; i < 80; i++){
+                circles.push({
+                    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5
+                });
+            }
+        }
+        function draw(){
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            circles.forEach(c => {
+                c.x += c.vx; c.y += c.vy;
+                if(c.x<0||c.x>canvas.width) c.vx*=-1; if(c.y<0||c.y>canvas.height) c.vy*=-1;
+                ctx.beginPath(); ctx.arc(c.x, c.y, 2, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba(255,255,255,0.2)'; ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+        window.addEventListener('resize', init);
+        init(); draw(); generateCatalog();
+    </script>
+</body>
+</html>
