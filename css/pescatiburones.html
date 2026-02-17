@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SportPress — Pesca de Tiburones</title>
+  <meta name="description" content="Portal profesional sobre pesca de tiburones con diseño moderno, interactividad y enfoque educativo y seguro.">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#e60000;--accent-dark:#b50000;--muted:#4a4a4a;--bg:#ffffff;font-family:'Roboto',sans-serif;--shadow:0 4px 20px rgba(0,0,0,0.15);--gradient:linear-gradient(90deg, #ffffff 0%, #ffeaea 100%)}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#111;line-height:1.6}
+    a{transition:0.3s;color:var(--muted);text-decoration:none}
+    a:hover{color:var(--accent-dark)}
+    header{background:white;box-shadow:var(--shadow);position:sticky;top:0;z-index:100}
+    .container{max-width:1200px;margin:0 auto;padding:24px}
+    nav{display:flex;align-items:center;justify-content:space-between}
+    nav .brand{display:flex;gap:12px;align-items:center}
+    .brand h1{font-size:24px;margin:0;color:var(--accent);font-weight:700}
+    .brand .small{font-size:14px;color:var(--muted)}
+    .nav-links{display:flex;gap:24px;font-weight:600}
+    .nav-links a{padding:6px 12px;border-radius:6px;transition:0.3s}
+    .nav-links a:hover{background:var(--accent);color:white}
+    .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:80px 20px;background:var(--gradient);border-radius:12px;box-shadow:var(--shadow)}
+    .hero h2{color:var(--accent);font-size:36px;margin-bottom:16px}
+    .hero p{max-width:700px;margin:0 auto 24px;font-size:18px}
+    .cta{display:inline-block;background:var(--accent);color:white;padding:14px 24px;border-radius:12px;font-weight:700;text-decoration:none;box-shadow:var(--shadow);font-size:16px;transition:0.3s}
+    .cta:hover{background:var(--accent-dark)}
+    section{margin-top:50px}
+    .card{background:white;border-radius:16px;padding:28px;box-shadow:var(--shadow);transition:transform 0.3s}
+    .card:hover{transform:translateY(-8px)}
+    .videos iframe{width:100%;height:280px;border-radius:12px;border:0}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:12px;cursor:pointer;transition:transform 0.4s,box-shadow 0.4s}
+    .gallery img:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.2)}
+    h2{margin-bottom:18px;color:var(--accent);font-size:28px}
+    ul.rules{padding-left:22px;list-style:disc}
+    .locations{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+    .small{font-size:14px;color:var(--muted)}
+    footer{padding:50px 0;color:var(--muted);background:#f5f5f5;text-align:center;font-size:14px}
+    .accordion button{width:100%;text-align:left;background:none;border:0;padding:16px 0;font-weight:700;color:var(--accent);font-size:18px;cursor:pointer;transition:0.3s}
+    .accordion button:hover{color:var(--accent-dark)}
+    .accordion p{margin:10px 0 0 0;color:var(--muted);display:none;font-size:15px}
+    @media(max-width:900px){.nav-links{display:none}}
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:1000}
+    .lightbox img{max-width:90%;max-height:90%;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M3 12c0-5 8-9 9-9s9 4 9 9-4 9-9 9S3 17 3 12z" fill="var(--accent)"></path></svg>
+          <div>
+            <h1>SportPress — Pesca de Tiburones</h1>
+            <div class="small">Noticias y normativa profesional</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#videos">Vídeos</a>
+          <a href="#fotos">Fotos</a>
+          <a href="#reglas">Reglas</a>
+          <a href="#donde">Dónde</a>
+          <a href="#legalidad">Legalidad</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section class="hero">
+      <h2>Explora la pesca de tiburones con profesionalismo</h2>
+      <p>Información completa sobre técnicas, reglas, ubicaciones y conservación con diseño moderno y atractivo.</p>
+      <a class="cta" href="#reglas">Ver reglas y buenas prácticas</a>
+    </section>
+
+    <section id="videos" class="card">
+      <h2>Vídeos destacados</h2>
+      <div class="videos">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" title="Vídeo 1" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Vídeo 2" style="margin-top:14px" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <section id="fotos" class="card">
+      <h2>Galería</h2>
+      <div class="gallery">
+        <img src="/assets/img/tiburon1.jpg" alt="Tiburon en el mar" data-full="/assets/img/tiburon1-large.jpg">
+        <img src="/assets/img/tiburon2.jpg" alt="Cerrojo de captura" data-full="/assets/img/tiburon2-large.jpg">
+        <img src="/assets/img/tiburon3.jpg" alt="Equipo a bordo" data-full="/assets/img/tiburon3-large.jpg">
+        <img src="/assets/img/tiburon4.jpg" alt="Liberación" data-full="/assets/img/tiburon4-large.jpg">
+      </div>
+      <div class="small" style="margin-top:12px">Haz clic en las imágenes para ampliarlas.</div>
+    </section>
+
+    <section id="reglas" class="card">
+      <h2>Reglas y buenas prácticas</h2>
+      <ul class="rules">
+        <li>Conocer y respetar la normativa local.</li>
+        <li>Uso de anzuelos y aparejos que minimicen daño.</li>
+        <li>Evitar la pesca en zonas de crianza y mantener distancia de fauna protegida.</li>
+        <li>Reducir el tiempo fuera del agua si practicas captura y suelta.</li>
+        <li>Registro fotográfico responsable.</li>
+      </ul>
+      <p class="small" style="margin-top:10px">Consulta la sección <a href="#legalidad">Legalidad</a> antes de pescar.</p>
+    </section>
+
+    <aside class="card" style="margin-top:50px">
+      <h3>Resumen rápido</h3>
+      <p class="small">Principiantes y profesionales pueden planificar su pesca con seguridad, respetando la legalidad y conservación.</p>
+      <h4>Consejos de seguridad</h4>
+      <ol class="small">
+        <li>Equipo de seguridad obligatorio (chalecos, radio, botiquín).</li>
+        <li>Revisa condiciones meteorológicas.</li>
+        <li>Plan de manejo y liberación si no retienes captura.</li>
+      </ol>
+    </aside>
+
+    <section id="donde" class="card">
+      <h2>Dónde se practica</h2>
+      <div class="locations">
+        <div><h4>Mar abierto</h4><p class="small">Embarcaciones a cebo vivo o muerto. Equipo de gran resistencia requerido.</p></div>
+        <div><h4>Zonas costeras y arrecifes</h4><p class="small">Concentración de especies en arrecifes o cañones. Respeta vedas locales.</p></div>
+        <div><h4>Pesca desde costa</h4><p class="small">Especies juveniles desde acantilados o playas. Riesgos y regulaciones especiales aplican.</p></div>
+      </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!2m..." width="100%" height="260" style="border:0;border-radius:14px;margin-top:14px" allowfullscreen loading="lazy"></iframe>
+    </section>
+
+    <section id="legalidad" class="card">
+      <h2>Legalidad y normativa</h2>
+      <div class="accordion">
+        <div><button aria-expanded="false">Tallas y cuotas</button><p>Verifica tallas mínimas y cuotas; algunas especies protegidas.</p></div>
+        <div><button aria-expanded="false">Especies protegidas</button><p>Consultar listas de especies vulnerables/amenazadas antes de pescar.</p></div>
+        <div><button aria-expanded="false">Licencias y permisos</button><p>Necesarias según país y zona de pesca.</p></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Recursos y formación</h2>
+      <ul>
+        <li>Guías y cursos de captura y suelta.</li>
+        <li>Manuales de seguridad en embarcaciones.</li>
+        <li>Organizaciones de conservación con buenas prácticas.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="small">© SportPress — Pesca de Tiburones. Promovemos la pesca responsable.</div>
+      <div class="small">Aviso legal: cumplir la normativa local y priorizar conservación.</div>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="lightbox"><img id="lightbox-img"><button id="lb-close" style="position:absolute;top:20px;right:22px;background:none;border:0;color:white;font-size:26px">✕</button></div>
+
+  <script>
+    document.querySelectorAll('.gallery img').forEach(img=>{img.addEventListener('click',()=>{const lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=img.dataset.full||img.src;lb.style.display='flex'})})
+    document.getElementById('lb-close').addEventListener('click',()=>{document.getElementById('lightbox').style.display='none'})
+    document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox') e.currentTarget.style.display='none'})
+    document.querySelectorAll('.accordion button').forEach(btn=>{btn.addEventListener('click',()=>{const expanded=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',String(!expanded));const p=btn.nextElementSibling;if(p)p.style.display=expanded?'none':'block'});const p=btn.nextElementSibling;if(p)p.style.display='none'})
+  </script>
+</body>
+</html>

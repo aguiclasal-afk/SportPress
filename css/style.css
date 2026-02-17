@@ -1,0 +1,324 @@
+* {
+    background-color: red;
+
+}
+
+.headbt {
+    align-items: center;
+    height: 60px;
+    width: 650px;
+    position: absolute;
+    right: 37%;
+    bottom: 87%;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  border-radius: 30px;
+        background: rgba(255, 255, 255, 0.2); /* Transparencia */
+        backdrop-filter: blur(10px); /* Difuminado del fondo */
+        -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+        border: 2.5px solid rgba(255, 255, 255, 0.562);
+        color: white;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transition: transform 0.4s;
+
+}
+
+.headbt:hover {
+
+  transform: scale(1.1);
+
+}
+
+.boxeo{
+ border-radius: 15px;
+        background: rgba(255, 255, 255, 0.11); /* Transparencia */
+        backdrop-filter: blur(10px); /* Difuminado del fondo */
+        -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+height: 35%;
+width: 20%;
+position: absolute;
+bottom: 29%;
+right: 70%;
+  transition: transform 0.4s;
+    font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+
+}
+.boxeo:hover {
+
+  transform: scale(1.1);
+
+}
+
+.Baloncesto {
+ border-radius: 15px;
+        background: rgba(255, 255, 255, 0.11); /* Transparencia */
+        backdrop-filter: blur(8px); /* Difuminado del fondo */
+        -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+height: 35%;
+width: 20%;
+position: absolute;
+bottom: 29%;
+right: 40%;
+  transition: transform 0.4s;
+    font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+
+
+}
+.Baloncesto:hover {
+
+  transform: scale(1.1);
+
+}
+
+.PDT {
+border-radius: 15px;
+        background: rgba(255, 255, 255, 0.11); /* Transparencia */
+        backdrop-filter: blur(8px); /* Difuminado del fondo */
+        -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+height: 35%;
+width: 20%;
+position: absolute;
+bottom: 29%;
+right: 10%;
+  transition: transform 0.4s;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+
+}
+
+.PDT:hover {
+
+  transform: scale(1.1);
+
+}
+
+.bt1{
+  position: absolute;
+  top: 23%;
+  right: 24%;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+.bt2{
+  position: absolute;
+  top: 23%;
+  right: 24%;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+.bt3{
+  position: absolute;
+  top: 23%;
+  right: 24%;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+
+.btt {
+ text-align: center;
+font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: 15%;
+  right: 41%;
+  background-color: red;
+  height: 14%;
+  width: 26%;
+  border-radius: 22px;
+  border-color: 12px 10px 10px white;
+  border: 2px solid white;
+  box-shadow: 2px 2px 30px rgba(29, 29, 29, 0.74);
+  position: absolute;
+  right: 37%;
+  
+} 
+
+.bxi {
+  height: 35%;
+  width: 60%;
+  position: absolute;
+  bottom: 35%;
+  right: 20%;
+  border-radius: 10px;
+   border: 2px solid white;
+   box-shadow: 2px 2px 40px rgba(255, 255, 255, 0.74);
+}
+
+.bxi2 {
+  height: 35%;
+  width: 60%;
+  position: absolute;
+  bottom: 35%;
+  right: 20%;
+  border-radius: 10px;
+   border: 2px solid white;
+   box-shadow: 2px 2px 40px rgba(255, 255, 255, 0.74);
+}
+.bxi3 {
+  height: 35%;
+  width: 60%;
+  position: absolute;
+  bottom: 35%;
+  right: 20%;
+  border-radius: 10px;
+   border: 2px solid white;
+   box-shadow: 2px 2px 40px rgba(255, 255, 255, 0.74);
+}
+
+.btt2 {
+ text-align: center;
+font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: 15%;
+  right: 41%;
+  background-color: red;
+  height: 14%;
+  width: 26%;
+  border-radius: 22px;
+  border-color: 12px 10px 10px white;
+  border: 2px solid white;
+  box-shadow: 2px 2px 30px rgba(29, 29, 29, 0.74);
+  position: absolute;
+  right: 37%;
+  
+} 
+.btt3 {
+ text-align: center;
+font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: 15%;
+  right: 41%;
+  background-color: red;
+  height: 14%;
+  width: 26%;
+  border-radius: 22px;
+  border-color: 12px 10px 10px white;
+  border: 2px solid white;
+  box-shadow: 2px 2px 30px rgba(29, 29, 29, 0.74);
+  position: absolute;
+  right: 37%;
+  
+} 
+
+.rgl{
+ border-radius: 15px;
+        background: rgba(255, 255, 255, 0.11); /* Transparencia */
+        backdrop-filter: blur(10px); /* Difuminado del fondo */
+        -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+height: 55%;
+width: 80%;
+position: absolute;
+bottom: 19%;
+right: 14%;
+  transition: transform 0.4s;
+    font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+
+}
+
+.aptb1 {
+ border-radius: 15px;
+        background: rgba(255, 255, 255, 0.062); /* Transparencia */
+        backdrop-filter: blur(8px); /* Difuminado del fondo */
+        -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.171);
+height: 38%;
+width: 20%;
+position: absolute;
+bottom: 29%;
+right: 70%;
+  transition: transform 0.4s;
+    font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+
+
+}
+
+.aptb2 {
+ border-radius: 15px;
+        background: rgba(255, 255, 255, 0.062); /* Transparencia */
+        backdrop-filter: blur(8px); /* Difuminado del fondo */
+        -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.171);
+height: 38%;
+width: 20%;
+position: absolute;
+bottom: 29%;
+right: 42%;
+  transition: transform 0.4s;
+    font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+
+
+}
+
+.aptb3 {
+ border-radius: 15px;
+        background: rgba(255, 255, 255, 0.062); /* Transparencia */
+        backdrop-filter: blur(8px); /* Difuminado del fondo */
+        -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.171);
+height: 38%;
+width: 20%;
+position: absolute;
+bottom: 29%;
+right: 15%;
+  transition: transform 0.4s;
+    font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+
+
+}
