@@ -1,146 +1,309 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>SportPress</title>
+    <title>SportPress | Profesional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-      html, body{ margin:0; overflow: hidden; background-color: #222;position: relative;height: 100%;}
-      canvas{display:block;}
+        :root {
+            --primary-color: #ffffff;
+            --accent-color: #007bff;
+            --bg-dark: #111;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--primary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Canvas de fondo */
+        #neuralCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Header y Navegación */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Contenedor Principal */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h1.main-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Grid de Deportes */
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding-bottom: 60px;
+        }
+
+        .sport-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sport-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--accent-color);
+        }
+
+        .sport-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .info-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .info-btn:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Ajustes para móviles */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav {
+                margin-bottom: 10px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+            h1.main-title {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
-<header>    
-    <img src="css/ChatGPT Image 31 oct 2025, 12_22_23.png" style="position: absolute;height: 120px; width: 120px; border-radius: 70px; right: 30px; top: 15px;">
-    <div class="headbt">
-       <a href="index.html" style="color: rgb(255, 255, 255); background-color: transparent; text-align: center;text-decoration: none; position: absolute; right: 85%; top: 30%; font-size: 125%; cursor: pointer;">Inicio</a>
-       <a href="" style="color: rgb(255, 255, 255); background-color: transparent; text-align: center;text-decoration: none; position: absolute; right: 74%; top: 30%; font-size: 125%; cursor: pointer;">Tienda</a>
-    </div>
-            <div class="boxeo">
-              <h1 style="color: rgb(255, 255, 255); background-color: transparent; text-align: center;text-decoration: none; position: absolute; right: 39%; top: 10%; font-size: 145%; cursor: pointer;">BOXEO</h1>
-              <div class="btt"><a href="boxeo.html" class="bt1">+INFO</a></div>
-              <img src="css/17295286757168.jpg" class="bxi">
-    </div>
-      <div class="Baloncesto">
-          <h1 style="color: rgb(255, 255, 255); background-color: transparent; text-align: center;text-decoration: none; position: absolute; right: 28%; top: 10%; font-size: 145%; cursor: pointer;">BALONCESTO</h1>
-             <div class="btt2"><a href="baloncesto.html" class="bt2">+INFO</a></div>
-              <img src="css/historia-del-baloncesto-1.jpg" class="bxi2">
-    </div>
-      <div class="PDT">
-<h1 style="color: rgb(255, 255, 255); background-color: transparent; text-align: center;text-decoration: none; position: absolute; right: 16%; top: 10%; font-size: 145%; cursor: pointer;">PESCA DE TIBURONES</h1>
- <div class="btt3"><a href="pescatiburones.html" class="bt3">+INFO</a></div>
-              <img src="css/0103tiburones-1293613.jpg" class="bxi3">
-    </div>
-    <footer>
-  © SportPress — profesional.
-</footer>
-</header>
 <body>
 
+    <canvas id="neuralCanvas"></canvas>
 
-    
-<canvas id="neuralCanvas">
-</canvas>
-    
+    <header>
+        <nav>
+            <a href="index.html">INICIO</a>
+            <a href="#">TIENDA</a>
+        </nav>
+        <img src="css/ChatGPT Image 31 oct 2025, 12_22_23.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+    </header>
+
+    <main>
+        <h1 class="main-title">SportPress</h1>
+
+        <div class="sports-grid">
+            <article class="sport-card">
+                <img src="css/17295286757168.jpg" alt="Boxeo" onerror="this.src='https://via.placeholder.com/400x200?text=BOXEO'">
+                <div class="card-content">
+                    <h2>BOXEO</h2>
+                    <a href="boxeo.html" class="info-btn">+ INFO</a>
+                </div>
+            </article>
+
+            <article class="sport-card">
+                <img src="css/historia-del-baloncesto-1.jpg" alt="Baloncesto" onerror="this.src='https://via.placeholder.com/400x200?text=BALONCESTO'">
+                <div class="card-content">
+                    <h2>BALONCESTO</h2>
+                    <a href="baloncesto.html" class="info-btn">+ INFO</a>
+                </div>
+            </article>
+
+            <article class="sport-card">
+                <img src="css/0103tiburones-1293613.jpg" alt="Pesca de Tiburones" onerror="this.src='https://via.placeholder.com/400x200?text=PESCA'">
+                <div class="card-content">
+                    <h2>PESCA DE TIBURONES</h2>
+                    <a href="pescatiburones.html" class="info-btn">+ INFO</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        © SportPress — Profesional.
+    </footer>
+
     <script>
-      const canvas = document.getElementById('neuralCanvas'),
-            ctx = canvas.getContext('2d'),
-            circles = [];
-      let mouseX = 0, mouseY = 0, balls = 75;
-      function init(){
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const canvas = document.getElementById('neuralCanvas'),
+              ctx = canvas.getContext('2d'),
+              circles = [];
+        let mouseX = -100, mouseY = -100, balls = 75;
 
-        for (let i = 0; i< balls; i++){
-          circles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: 5,
-            color: '#ffffff',
-            velocity: {
-              x: (Math.random() - 0.5) * 1.2,
-              y: (Math.random() - 0.5) * 1.2
+        function init(){
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            circles.length = 0; // Limpiar array en resize
+
+            for (let i = 0; i < balls; i++){
+                circles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: 2,
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    velocity: {
+                        x: (Math.random() - 0.5) * 0.8,
+                        y: (Math.random() - 0.5) * 0.8
+                    }
+                });
             }
-          });
         }
 
-        canvas.addEventListener('mousemove', (ev)=>{
-          mouseX = ev.clientX;
-          mouseY = ev.clientY;
+        function animate(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            circles.forEach(circle =>{
+                circle.x += circle.velocity.x;
+                circle.y += circle.velocity.y;
+
+                if(circle.x < 0 || circle.x > canvas.width) circle.velocity.x *= -1;
+                if(circle.y < 0 || circle.y > canvas.height) circle.velocity.y *= -1;
+
+                // Atracción suave al mouse
+                const dx = mouseX - circle.x;
+                const dy = mouseY - circle.y;
+                const distToCursor = Math.sqrt(dx * dx + dy * dy);
+                if(distToCursor < 200){
+                    circle.x += (dx / distToCursor) * 0.2;
+                    circle.y += (dy / distToCursor) * 0.2;
+                }
+
+                drawCircle(circle.x, circle.y, circle.radius, circle.color);
+            });
+
+            connectCircles();
+            requestAnimationFrame(animate);
+        }
+
+        function drawCircle(x, y, radius, color){
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+
+        function connectCircles(){
+            for(let i = 0; i < circles.length; i++){
+                for(let j = i + 1; j < circles.length; j++){
+                    const distance = Math.sqrt(
+                        Math.pow(circles[i].x - circles[j].x, 2) + Math.pow(circles[i].y - circles[j].y, 2)
+                    );
+
+                    if(distance < 150){
+                        ctx.beginPath();
+                        ctx.moveTo(circles[i].x, circles[i].y);
+                        ctx.lineTo(circles[j].x, circles[j].y);
+                        // Opacidad basada en la distancia
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance/150})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('mousemove', (ev) => {
+            mouseX = ev.clientX;
+            mouseY = ev.clientY;
         });
 
+        window.addEventListener('resize', init);
+
+        init();
         animate();
-      }
-      function animate(){
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        circles.forEach(circle =>{
-          circle.x += circle.velocity.x;
-          circle.y += circle.velocity.y;
-
-
-          if(circle.x - circle.radius < 0 || circle.x + circle.radius > canvas.width){
-            circle.velocity.x *= -1;
-          }
-          if(circle.y - circle.radius < 0 || circle.y + circle.radius > canvas.height){
-            circle.velocity.y *= -1;
-          }
-
-
-          const dx = mouseX - circle.x;
-          const dy = mouseY - circle.y;
-          const distToCursor = Math.sqrt(dx * dx + dy * dy);
-          const speed = 0.1;
-          circle.x += (dx /distToCursor) * speed;
-          circle.y += (dy / distToCursor) * speed;
-
-
-          drawCircle(circle.x, circle.y, circle.radius, circle.color);
-        });
-
-
-        connectCircles();
-        requestAnimationFrame(animate);
-      }
-       function drawCircle(x, y, radius, color){
-        ctx.beginPath();
-        ctx.arc(x,y,radius, 0, Math.PI * 2);
-        ctx.fillStyle = color;
-        ctx.fill();
-        ctx.closePath();
-      }
-       function connectCircles(){
-        for(let i = 0; i < circles.length; i++){
-          for(let j = i+1; j < circles.length; j++){
-            const distance = Math.sqrt(
-              Math.pow(circles[i].x - circles[j].x, 2) + Math.pow(circles[i].y - circles[j].y, 2)
-            );
-
-            if(distance < 100){
-              ctx.beginPath();
-              ctx.moveTo(circles[i].x, circles[i].y);
-              ctx.lineTo(circles[j].x, circles[j].y);
-              ctx.strokeStyle = '#ffffff';
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-              ctx.closePath();
-            }
-          }
-        }
-      }
-      window.addEventListener('resize', () =>{
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      });
-
-      init();
-
     </script>
-
-
-
 </body>
 </html>
